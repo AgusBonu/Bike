@@ -7,7 +7,7 @@ using BAL.Interfaces;
 using BAL.Repositories;
 using BAL.Models;
 
-namespace Presentation.Areas.Rents.Controllers
+namespace Bike.Controllers
 {
     public class RentsController : Controller
     {
