@@ -1,0 +1,92 @@
+﻿@model BAL.Models.ModelBodyRents
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Create2", "Rents"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Rent</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="col-md-2">Type</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="@Html.NameFor(model => model.typerents_id)" id="@Html.NameFor(model => model.typerents_id)">
+                            @foreach (var type in ViewBag.typerents)
+                            {
+                                <option value="@type.id">@type.detail</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm("Confirm", "Rents", method: FormMethod.Get))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <h4>Car</h4>
+                <hr />
+                <table class="table">
+                    <tr>
+                        <th>
+                            Tipo
+                        </th>
+                        <th>
+                            Precio
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                    @foreach (var type in ViewBag.listbodyrents)
+                    {
+                        <tr>
+                            <td>
+                                @type.name_temp
+                            </td>
+                            <td>
+                                @type.price
+                            </td>
+                            <td>
+                                @Html.ActionLink("Remove", "RemoveCar", new { id = type.typerents_id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+
+                        @if (ViewBag.listbodyrents.Count > 0)
+                        {
+
+                            <input type="submit" value="Continue" class="btn btn-success" />
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@Html.ActionLink("Back to List", "Index")
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

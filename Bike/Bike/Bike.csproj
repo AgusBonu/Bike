@@ -175,9 +175,23 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Promotions\Create.cshtml" />
+    <Content Include="Views\Promotions\Delete.cshtml" />
+    <Content Include="Views\Promotions\Edit.cshtml" />
+    <Content Include="Views\Promotions\Index.cshtml" />
+    <Content Include="Views\Rents\Confirm.cshtml" />
+    <Content Include="Views\Rents\Create.cshtml" />
+    <Content Include="Views\Rents\Delete.cshtml" />
+    <Content Include="Views\Rents\Details.cshtml" />
+    <Content Include="Views\Rents\Index.cshtml" />
+    <Content Include="Views\TypeRents\Create.cshtml" />
+    <Content Include="Views\TypeRents\Delete.cshtml" />
+    <Content Include="Views\TypeRents\Index.cshtml" />
+    <Content Include="Views\TypeRents\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
