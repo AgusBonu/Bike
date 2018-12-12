@@ -11,7 +11,6 @@ namespace BAL.Interfaces
     {
         int AddRent(ModelRents model);
         void DeleteRent(int id);
-        void EditRent(ModelRents model);
         List<ModelDetailRents> SelectAll();
         ModelRents SelectRentById(int id);
 

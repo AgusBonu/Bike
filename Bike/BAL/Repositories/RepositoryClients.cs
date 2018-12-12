@@ -12,75 +12,127 @@ namespace BAL.Repositories
     {
         public void AddClient(ModelClients model)
         {
-            using (var db = new DAL.BikeEntities())
+            try
             {
-                db.Clients.Add(MapToDB(model));
-                db.SaveChanges();
+                using (var db = new DAL.BikeEntities())
+                {
+                    db.Clients.Add(MapToDB(model));
+                    db.SaveChanges();
+                }
+            }
+            catch( Exception ex)
+            {
+
             }
         }
 
         public void DeleteClient(int id)
         {
-            using (var db = new DAL.BikeEntities())
+            try
             {
-                var aDelete = db.Clients.Find(id);
-                db.Clients.Remove(aDelete);
-                db.SaveChanges();
+                using (var db = new DAL.BikeEntities())
+                {
+                    var aDelete = db.Clients.Find(id);
+                    db.Clients.Remove(aDelete);
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
         public void EditClient(ModelClients model)
         {
-            using (var db = new DAL.BikeEntities())
+            try
             {
+                using (var db = new DAL.BikeEntities())
+                {
                 var aEdit = db.Clients.Find(model.id);
                 aEdit.name = model.name;
                 aEdit.surname = model.surname;
                 aEdit.email = model.email;
                 aEdit.telephone = model.telephone;
                 db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
         public List<ModelClients> SelectAll()
         {
-            using (var db = new DAL.BikeEntities())
+            try
             {
-                return db.Clients.Select(MapToApp).ToList();
+                using (var db = new DAL.BikeEntities())
+                {
+                    return db.Clients.Select(MapToApp).ToList();
+                }
             }
+            catch ( Exception ex)
+            {
+                return null;
+            }
+            
         }
 
         public ModelClients SelectClientById(int id)
         {
-            using (var db = new DAL.BikeEntities())
+            try
             {
-                return MapToApp(db.Clients.Find(id));
+                using (var db = new DAL.BikeEntities())
+                {
+                    return MapToApp(db.Clients.Find(id));
+                }
             }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
 
         private DAL.Clients MapToDB(ModelClients model)
         {
-            return new DAL.Clients()
+            try
+            { 
+                return new DAL.Clients()
+                {
+                    id = model.id,
+                    name = model.name,
+                    surname = model.surname,
+                    email = model.email,
+                    telephone = model.telephone
+                };
+            }
+            catch ( Exception ex)
             {
-                id = model.id,
-                name = model.name,
-                surname = model.surname,
-                email = model.email,
-                telephone = model.telephone
-            };
+                return null;
+            }
         }
 
         private ModelClients MapToApp(DAL.Clients modeldb)
         {
-            return new ModelClients()
+            try
             {
-                id = modeldb.id,
-                name = modeldb.name,
-                surname = modeldb.surname,
-                email = modeldb.email,
-                telephone = modeldb.telephone
-            };
+                return new ModelClients()
+                {
+                    id = modeldb.id,
+                    name = modeldb.name,
+                    surname = modeldb.surname,
+                    email = modeldb.email,
+                    telephone = modeldb.telephone
+                };
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
     }
 }

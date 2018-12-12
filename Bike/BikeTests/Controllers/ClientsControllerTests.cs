@@ -55,27 +55,29 @@ namespace Bike.Controllers.Tests
         [TestMethod()]
         public void EditTest()
         {
-            var controller = new ClientsController();
-            var result = (ViewResult)controller.Edit(9);
-            Assert.IsNotNull(result, "El modelo esperado era nulo.");
+            ClientsController clientController = new ClientsController();
+            var result = clientController.Edit(9) as ViewResult;
+            Assert.IsNotNull(result, "Deberia haber retornado un ViewResult");
+            Assert.IsNotNull(result.Model, "Deberia haber devuelto un result.Model de ModelClients");
         }
-
-        [TestMethod()]
-        public void EditTest1()
-        {
-            Assert.Fail();
-        }
+       
 
         [TestMethod()]
         public void DeleteTest()
         {
-            Assert.Fail();
+            ClientsController clientController = new ClientsController();
+            var result = clientController.Delete(9) as ViewResult;
+            Assert.IsNotNull(result, "Deberia haber retornado un ViewResult");
+            Assert.IsNotNull(result.Model, "Deberia haber devuelto un result.Model de ModelClients");
         }
 
         [TestMethod()]
         public void DeleteClientTest()
         {
-            Assert.Fail();
+            ClientsController clientController = new ClientsController();
+            var result = clientController.DeleteClient(10) as RedirectToRouteResult;
+            Assert.IsTrue(result.RouteValues.ContainsKey("action"));
+            Assert.AreEqual("Index",result.RouteValues["action"].ToString(),"Deberia haber redireccionado al Index");
         }
     }
 }
